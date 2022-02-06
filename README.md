@@ -1,5 +1,6 @@
 ## PolyCollision
 > 当前版本 [**V1.1**](https://github.com/Hamster5295/PolyCollision/releases/download/v1.1/PolyCollision.V1.1.apk)
+
 ### 玩法
 1. 消灭出现在周围的色块，获得更高的分数！
 2. 在前800分时，每隔100分获得一次**升级**或**血量恢复**
