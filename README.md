@@ -1,2 +1,14 @@
-# PolyCollision
-A Mobile Game using Unity3D as engine
+## PolyCollision
+> 当前版本 [**V1.1**](https://github.com/Hamster5295/PolyCollision/releases/download/v1.1/PolyCollision.V1.1.apk)
+
+### 玩法
+1. 消灭出现在周围的色块，获得更高的分数！
+2. 在前800分时，每隔100分获得一次**升级**或**血量恢复**
+3. **护盾**会在一段时间不受伤害时***自动恢复***，**血量**除了800分以内某几次恢复之外，***不会自然恢复***
+
+***
+
+### 更新日志   V1.1
+1. 增大玩家的角摩擦力
+2. 修复了创造新纪录时文字不显示的bug
+3. 结算界面增加返回主菜单的按钮
