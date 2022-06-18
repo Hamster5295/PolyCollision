@@ -360,8 +360,8 @@ MonoBehaviour:
   shield: 0
   unitName: Hexagon
   isPlayer: 0
-  maxHp: 120
-  maxShield: 100
+  maxHp: 100
+  maxShield: 60
   shieldRechargeRate: 10
   shieldRechargeDeltaTime: 5
   speed: 0
