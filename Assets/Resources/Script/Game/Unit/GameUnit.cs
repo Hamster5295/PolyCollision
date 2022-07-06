@@ -18,6 +18,8 @@ public class GameUnit : MonoBehaviour
     private Collider2D collider_shield;
     private float shieldCD;
 
+    public AudioSource a;
+
     private void Start()
     {
         Init();
@@ -154,5 +156,6 @@ public class GameUnit : MonoBehaviour
         i.transform.rotation = transform.rotation;
         i.Init();
 
+        a.Play();
     }
 }

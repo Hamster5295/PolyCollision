@@ -19,8 +19,11 @@ public class PlayerFire : MonoBehaviour
     private Collider2D col_self, col_shield;
     private Dictionary<int, Vector2> mGunPositions = new Dictionary<int, Vector2>();
 
+    public AudioSource a;
+
     private void Start()
     {
+
         GlobalData.player = transform;
 
         col_self = GetComponent<Collider2D>();
@@ -44,6 +47,7 @@ public class PlayerFire : MonoBehaviour
         {
             CreateGunAmmo();
             gunCD = GetGunCD();
+            a.Play();
 
             gunFireAt++;
             if (gunFireAt > GetGunFirePositions().Count - 1) gunFireAt = 0;

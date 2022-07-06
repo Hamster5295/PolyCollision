@@ -17,8 +17,8 @@ public class StartBtn : HBtn_Event
 
     private IEnumerator StartGame()
     {
-        ani_UI.Play("UI_Out");
-        yield return new WaitForSeconds(ani_UI["UI_Out"].length);
+        ani_UI.Play("CanvasGroup_Out");
+        yield return new WaitForSeconds(ani_UI["CanvasGroup_Out"].length);
         SceneManager.LoadScene("GameScene");
 
     }

@@ -18,6 +18,7 @@ public class MoveStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointe
 
     private Vector2 currentPos;
     private bool underControl = false;
+    private float factor = 1;
 
     private void Start()
     {
@@ -31,12 +32,17 @@ public class MoveStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointe
         img_handle = stickHandle.GetComponent<Image>();
 
         playerUnit = player.GetComponent<GameUnit>();
+
+        factor = 1920f / Screen.width;
     }
 
     Vector2 value;
     private void Update()
     {
-        value = Vector2.ClampMagnitude(stickHandle.anchoredPosition - currentPos, maxMagnitude);
+        // var p = (Vector2)stickHandle.position;
+        // p.x /= factor; p.y /= factor;
+
+        value = Vector2.ClampMagnitude((Vector2)stickHandle.position - currentPos, maxMagnitude);
         if (underControl)
         {
             playerRb.AddForce(value * Time.deltaTime * playerUnit.speed);
@@ -53,8 +59,13 @@ public class MoveStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointe
     public void OnPointerDown(PointerEventData eventData)
     {
         currentPos = eventData.position;
-        stickBackground.anchoredPosition = currentPos;
-        stickHandle.anchoredPosition = currentPos;
+
+        // var p = currentPos;
+        // p.x *= factorX; p.y *= factorY;
+        // Debug.Log(currentPos);
+        // Debug.Log(p);
+        stickBackground.position = currentPos;
+        stickHandle.position = currentPos;
         ColorUtil.SetColorAlpha(img_background, 1);
         ColorUtil.SetColorAlpha(img_handle, 1);
 
@@ -72,6 +83,8 @@ public class MoveStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IPointe
 
     public void OnDrag(PointerEventData eventData)
     {
-        stickHandle.position = Vector2.ClampMagnitude(eventData.position - currentPos, maxDistance) + currentPos;
+        // var p = currentPos;
+        // p.x *= factorX; p.y *= factorY;
+        stickHandle.position = Vector2.ClampMagnitude(eventData.position - currentPos, maxDistance / factor) + currentPos;
     }
 }
