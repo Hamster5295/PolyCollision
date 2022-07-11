@@ -6,6 +6,7 @@ using System.Collections;
 public class Upgrader : MonoBehaviour
 {
     public float stayLength;
+    public GameObject skillBtn;
     public List<LevelUpgradePair> upgrades;
 
     private Text text;
@@ -34,15 +35,18 @@ public class Upgrader : MonoBehaviour
             yield return new WaitUntil(() => Mathf.RoundToInt(GlobalData.score) / 100 >= currentLevel);
             currentLevel++;
 
-            foreach (var item in upgrades)
-            {
-                if (currentLevel == item.lvl)
-                {
-                    DoUpgrade(item);
-                    break;
-                }
-            }
+            DoUpgrade(GetUpgradeByLvl(currentLevel));
         }
+    }
+
+    private LevelUpgradePair GetUpgradeByLvl(int level)
+    {
+        foreach (var item in upgrades)
+        {
+            if (currentLevel == item.lvl) return item;
+        }
+
+        return upgrades[upgrades.Count - 1];
     }
 
     private void DoUpgrade(LevelUpgradePair item)
@@ -71,6 +75,11 @@ public class Upgrader : MonoBehaviour
                 playerUnit.hp += playerUnit.maxHp * item.value;
                 playerUnit.hp = Mathf.Clamp(playerUnit.hp, 0, playerUnit.maxHp);
                 break;
+
+            case LevelUpgradePair.UpgradeType.Skill:
+                MakeText("获得技能! ");
+                skillBtn.SetActive(true);
+                break;
         }
     }
 
@@ -98,6 +107,6 @@ public struct LevelUpgradePair
 
     public enum UpgradeType
     {
-        Gun_Upgrade, Shield, HP_Up, Restore
+        Gun_Upgrade, Shield, HP_Up, Restore, Skill
     }
 }

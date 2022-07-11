@@ -23,6 +23,7 @@ public class PlayerFire : MonoBehaviour
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
 
         GlobalData.player = transform;
 

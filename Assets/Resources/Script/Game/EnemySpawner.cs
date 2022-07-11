@@ -7,6 +7,8 @@ public class EnemySpawner : MonoBehaviour
     public List<EnemyPattern> enemyPatterns;
     public float interval;
 
+    private bool hasUpgraded = false;
+
     private void Start()
     {
         StartCoroutine(Summon());
@@ -31,6 +33,12 @@ public class EnemySpawner : MonoBehaviour
             {
                 SummonEnemy();
                 continue;
+            }
+
+            if (!hasUpgraded && GlobalData.score > 1200)
+            {
+                interval *= 0.5f;
+                hasUpgraded = true;
             }
         }
     }
